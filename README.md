@@ -9,12 +9,12 @@ Provision the virtual machines:
 $ vagrant up
 ```
 
-## Ceph cluster:
+## Ceph cluster
+This all-in-one ceph cluster contains:
 ```bash
 1 mon
 1 mds
-3 osd
-in one virtual machine
+3 osd(s)
 ```
 
 ## Ceph fuse client
