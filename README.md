@@ -1,7 +1,7 @@
 vagrant-ceph
 ============
 
-ceph dev environment with vagrant, the Vagrantfile will provision a two-virtualbox environment. A ceph cluster in one vm and a ceph fuse client.
+ceph development environment with vagrant, the Vagrantfile will provision a two-virtualbox environment. A ceph cluster in one vm and a ceph fuse client.
 
 ## Setup with Vagrant
 Provision the virtual machines:
