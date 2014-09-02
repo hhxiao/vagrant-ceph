@@ -20,3 +20,9 @@ This all-in-one ceph cluster contains:
 ## Ceph fuse client
 The ceph fuse client has already mounted ceph fs into /mnt/cephfs
 
+## Some notes
+```bash
+Current ceph release is firefly, it can be easily upgraded to a new version by replacing the release name in ceph.sh
+All there OSD(s) are currently set to 10G, it seems 5G will cause HEALTH_WARNING.
+
+```
