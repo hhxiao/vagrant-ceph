@@ -10,8 +10,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     [6789, 6800, 6801, 6802, 6803].each do |port|
       #ceph.vm.network "forwarded_port", guest: port, host: port
     end
-    ceph.vm.provision :shell, :path => "setup/ceph_pre.sh"
-    ceph.vm.provision :shell, :path => "setup/ceph.sh", :args => ["#{CEPH_OSD_NUM}"]
 
     ceph.vm.provider "virtualbox" do |v|
       v.memory = 1024
@@ -22,11 +20,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         v.customize ['storageattach', :id, '--storagectl', 'SATA Controller', '--port', n, '--device', 0, '--type', 'hdd', '--medium', disk]
       end
     end
+
+    ceph.vm.provision :shell, :path => "setup/ceph_pre.sh"
+    ceph.vm.provision :shell, :path => "setup/ceph.sh", :args => ["#{CEPH_OSD_NUM}"]
   end
 
   config.vm.define :client do |client|
+    client.ssh.pty = false
     client.vm.box = "hashicorp/precise64"
-    client.vm.host_name = "ceph-client"
+    client.vm.host_name = "client"
     client.vm.network "private_network", ip: "192.168.251.101"
     client.vm.provision :shell, :path => "setup/ceph_pre.sh"
     client.vm.provision :shell, :path => "setup/ceph_client.sh"
